@@ -8,8 +8,7 @@
 
 | 路径 | 说明 |
 | --- | --- |
-| `index.html` | 白露的小窝首页（GitHub Pages） |
-| `website/` | 网页版本（也走 Pages） |
+| `website/index.html` | 白露的小窝网页（GitHub Pages） |
 | `apk/BaiLuPet.apk` | 白露桌宠：摸猫计数 + 桌面悬浮宠物 |
 | `astrbot-note.md` | 早期提交测试 |
 
@@ -22,6 +21,10 @@
 - 需要开启「显示在其他应用上层」权限
 
 下载：[apk/BaiLuPet.apk](./apk/BaiLuPet.apk)
+
+## 网页
+
+https://hakimi-meow.github.io/BaiLu-Lab/website/
 
 ## 说明
 
