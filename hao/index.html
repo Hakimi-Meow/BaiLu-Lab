@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>嘉豪之家 · 豪气冲天</title>
+<style>
+  :root{
+    --gold-1:#ffe9a8;
+    --gold-2:#f7c948;
+    --gold-3:#c9971b;
+    --deep:#2b0b0b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:100%;overflow-x:hidden;}
+  body{
+    font-family:"Songti SC","STSong","SimSun",serif;
+    color:#fff4d6;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(247,201,72,.18), transparent 45%),
+      radial-gradient(circle at 80% 0%, rgba(255,90,60,.16), transparent 40%),
+      radial-gradient(circle at 50% 100%, rgba(247,201,72,.12), transparent 50%),
+      linear-gradient(160deg,#1a0505 0%,#3a0b0b 40%,#1a0505 100%);
+    min-height:100vh;
+  }
+
+  /* 金粉飘浮 */
+  .dust{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+  .dust i{
+    position:absolute;bottom:-20px;width:6px;height:6px;border-radius:50%;
+    background:radial-gradient(circle,#fff6cf,#f7c948 60%,transparent 70%);
+    animation:rise linear infinite;opacity:.7;
+  }
+  @keyframes rise{
+    0%{transform:translateY(0) scale(.6);opacity:0;}
+    15%{opacity:.9;}
+    100%{transform:translateY(-115vh) scale(1.1);opacity:0;}
+  }
+
+  /* 顶部横幅 */
+  .marquee{
+    position:relative;z-index:3;
+    background:linear-gradient(90deg,#7a1010,#b8860b,#7a1010);
+    border-bottom:2px solid var(--gold-2);
+    overflow:hidden;white-space:nowrap;
+    font-size:14px;letter-spacing:4px;color:#ffe9a8;
+    padding:8px 0;
+  }
+  .marquee span{display:inline-block;animation:scroll 22s linear infinite;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* 主视觉 */
+  .hero{
+    position:relative;z-index:2;text-align:center;
+    padding:70px 20px 40px;
+  }
+  .crown{font-size:56px;filter:drop-shadow(0 0 18px rgba(247,201,72,.8));animation:bob 3s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+  h1{
+    font-size:clamp(48px,13vw,120px);
+    letter-spacing:10px;
+    margin:6px 0 4px;
+    background:linear-gradient(100deg,#b8860b 0%,#ffe9a8 25%,#fffdf2 40%,#f7c948 60%,#b8860b 100%);
+    background-size:250% auto;
+    -webkit-background-clip:text;background-clip:text;
+    color:transparent;
+    -webkit-text-stroke:1px rgba(255,235,180,.25);
+    animation:shine 5s linear infinite;
+    filter:drop-shadow(0 6px 24px rgba(247,201,72,.35));
+  }
+  @keyframes shine{to{background-position:250% center;}}
+
+  .sub{
+    font-size:clamp(14px,3.4vw,20px);letter-spacing:8px;
+    color:#f3d58a;
+  }
+  .rule{
+    width:min(720px,86vw);height:2px;margin:22px auto 0;
+    background:linear-gradient(90deg,transparent,#f7c948,#fff3c4,#f7c948,transparent);
+    position:relative;
+  }
+  .rule::after{
+    content:"◆";position:absolute;left:50%;top:-11px;transform:translateX(-50%);
+    color:#ffe9a8;font-size:16px;text-shadow:0 0 12px #f7c948;
+  }
+
+  /* 数据条 */
+  .stats{
+    position:relative;z-index:2;
+    display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+    padding:8px 16px 40px;
+  }
+  .stat{
+    min-width:150px;flex:1 1 150px;max-width:230px;
+    padding:18px 14px;border-radius:14px;text-align:center;
+    background:linear-gradient(180deg,rgba(255,233,168,.10),rgba(255,233,168,.03));
+    border:1px solid rgba(247,201,72,.45);
+    box-shadow:inset 0 0 24px rgba(247,201,72,.08),0 8px 30px rgba(0,0,0,.4);
+  }
+  .stat b{
+    display:block;font-size:clamp(22px,6vw,34px);
+    background:linear-gradient(180deg,#fff6cf,#f7c948);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    letter-spacing:1px;
+  }
+  .stat small{display:block;margin-top:6px;font-size:12px;letter-spacing:3px;color:#c9a45a;}
+
+  /* 宫格 */
+  .grid{
+    position:relative;z-index:2;
+    display:grid;gap:18px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    max-width:1040px;margin:0 auto;padding:0 20px 50px;
+  }
+  .card{
+    position:relative;overflow:hidden;
+    padding:26px 20px 22px;border-radius:18px;
+    background:linear-gradient(180deg,rgba(60,10,10,.85),rgba(30,5,5,.9));
+    border:1px solid rgba(247,201,72,.5);
+    box-shadow:0 14px 40px rgba(0,0,0,.55),inset 0 0 40px rgba(247,201,72,.06);
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+  }
+  .card:hover{transform:translateY(-6px);border-color:#ffe9a8;box-shadow:0 22px 50px rgba(247,201,72,.22);}
+  .card::before{
+    content:"";position:absolute;top:-60%;left:-60%;width:60%;height:220%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
+    transform:rotate(18deg);
+    animation:sweep 4.5s ease-in-out infinite;
+  }
+  @keyframes sweep{0%,60%{left:-70%;}100%{left:130%;}}
+
+  .card .icon{font-size:40px;filter:drop-shadow(0 0 10px rgba(247,201,72,.6));}
+  .card h3{font-size:22px;letter-spacing:4px;margin:10px 0 8px;color:#ffe9a8;}
+  .card p{font-size:13px;line-height:1.9;color:#d9c2a0;}
+  .card .price{
+    margin-top:14px;font-size:18px;letter-spacing:2px;
+    color:#f7c948;text-shadow:0 0 16px rgba(247,201,72,.6);
+  }
+
+  /* 按钮 */
+  .cta{position:relative;z-index:2;text-align:center;padding:6px 20px 70px;}
+  button{
+    font-family:inherit;cursor:pointer;
+    padding:16px 54px;border-radius:999px;
+    font-size:18px;letter-spacing:6px;font-weight:700;
+    color:#3a1200;
+    background:linear-gradient(180deg,#fff6cf,#f7c948 45%,#c9971b);
+    border:2px solid #fff3c4;
+    box-shadow:0 0 0 4px rgba(247,201,72,.15),0 14px 36px rgba(247,201,72,.35);
+    transition:transform .16s ease,box-shadow .16s ease;
+  }
+  button:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 0 0 6px rgba(247,201,72,.2),0 20px 44px rgba(247,201,72,.45);}
+  button:active{transform:scale(.97);}
+  .hint{margin-top:18px;font-size:12px;letter-spacing:3px;color:#a98d5d;}
+
+  /* 底部 */
+  footer{
+    position:relative;z-index:2;text-align:center;
+    padding:26px 20px 40px;font-size:12px;letter-spacing:3px;color:#8f7448;
+    border-top:1px solid rgba(247,201,72,.2);
+  }
+
+  /* 金币喷射 */
+  .coin{
+    position:fixed;z-index:99;pointer-events:none;font-size:26px;
+    animation:pop 1.1s ease-out forwards;
+  }
+  @keyframes pop{
+    0%{transform:translate(0,0) scale(.4);opacity:1;}
+    100%{transform:translate(var(--dx),var(--dy)) scale(1.2) rotate(var(--rot));opacity:0;}
+  }
+
+  /* 大字水印 */
+  .watermark{
+    position:fixed;right:-4vw;top:24vh;z-index:0;
+    font-size:44vw;line-height:.8;color:rgba(247,201,72,.045);
+    pointer-events:none;user-select:none;
+  }
+</style>
+</head>
+<body>
+
+<div class="dust" id="dust"></div>
+<div class="watermark">豪</div>
+
+<div class="marquee">
+  <span id="mq">恭迎大驾 ✦ 金玉满堂 ✦ 日进斗金 ✦ 豪气冲天 ✦ 富贵逼人 ✦ 挥金如土 ✦ 金山银海 ✦ 气势如虹 ✦ </span>
+</div>
+
+<header class="hero">
+  <div class="crown">👑</div>
+  <h1>嘉豪之家</h1>
+  <div class="sub">豪 气 冲 天 · 金 玉 满 堂</div>
+  <div class="rule"></div>
+</header>
+
+<section class="stats">
+  <div class="stat"><b id="s1">0</b><small>总资产（元）</small></div>
+  <div class="stat"><b id="s2">0</b><small>豪车（辆）</small></div>
+  <div class="stat"><b id="s3">0</b><small>豪宅（套）</small></div>
+  <div class="stat"><b id="s4">0</b><small>气派指数</small></div>
+</section>
+
+<section class="grid">
+  <article class="card">
+    <div class="icon">🏎️</div>
+    <h3>豪 车</h3>
+    <p>加长车身 镀金轮毂<br>一脚油门 风声都带着金粉</p>
+    <div class="price">￥ 88,888,888 起</div>
+  </article>
+  <article class="card">
+    <div class="icon">🏯</div>
+    <h3>豪 宅</h3>
+    <p>九进院落 金砖铺地<br>门口两尊石狮子都得戴金链</p>
+    <div class="price">￥ 999,999,999 起</div>
+  </article>
+  <article class="card">
+    <div class="icon">⌚</div>
+    <h3>豪 表</h3>
+    <p>满天星镶钻 分秒闪瞎眼<br>时间在它面前都不敢走快</p>
+    <div class="price">￥ 12,345,678 起</div>
+  </article>
+  <article class="card">
+    <div class="icon">🥂</div>
+    <h3>豪 宴</h3>
+    <p>满汉全席 二十四道硬菜<br>连白开水都装在金壶里</p>
+    <div class="price">￥ 6,666,666 一桌</div>
+  </article>
+</section>
+
+<div class="cta">
+  <button id="go">点 我 豪 一 把</button>
+  <div class="hint">每点一次 家底更厚一分</div>
+</div>
+
+<footer>
+  嘉豪之家 · 豪气冲天 · 仅供一乐<br>
+  本页面为玩笑作品 不构成任何消费建议
+</footer>
+
+<script>
+(function () {
+  // 金色浮尘
+  var dust = document.getElementById('dust');
+  for (var i = 0; i < 40; i++) {
+    var s = document.createElement('i');
+    s.style.left = Math.random() * 100 + 'vw';
+    var dur = 8 + Math.random() * 10;
+    s.style.animationDuration = dur + 's';
+    s.style.animationDelay = (-Math.random() * dur) + 's';
+    s.style.width = s.style.height = (3 + Math.random() * 5) + 'px';
+    dust.appendChild(s);
+  }
+
+  // 跑马灯无缝
+  var mq = document.getElementById('mq');
+  mq.innerHTML += mq.innerHTML;
+
+  // 数字滚动
+  function countTo(el, target, ms) {
+    var start = 0, t0 = null;
+    function step(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / ms, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var v = Math.floor(start + (target - start) * eased);
+      el.textContent = v.toLocaleString('zh-CN');
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  countTo(document.getElementById('s1'), 888888888, 1800);
+  countTo(document.getElementById('s2'), 66, 1400);
+  countTo(document.getElementById('s3'), 12, 1600);
+  countTo(document.getElementById('s4'), 9999, 2000);
+
+  // 豪一把
+  var btn = document.getElementById('go');
+  var pop = 0;
+  btn.addEventListener('click', function (e) {
+    pop++;
+    var n = 14 + Math.min(pop * 2, 26);
+    for (var i = 0; i < n; i++) {
+      var c = document.createElement('div');
+      c.className = 'coin';
+      c.textContent = ['💰', '🪙', '💎', '👑'][Math.floor(Math.random() * 4)];
+      c.style.left = e.clientX + 'px';
+      c.style.top = e.clientY + 'px';
+      c.style.setProperty('--dx', (Math.random() * 320 - 160) + 'px');
+      c.style.setProperty('--dy', (-Math.random() * 320 - 60) + 'px');
+      c.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+      document.body.appendChild(c);
+      setTimeout(function (node) { return function () { node.remove(); }; }(c), 1200);
+    }
+    if (pop === 5) btn.textContent = '还 要 更 豪';
+    if (pop === 10) btn.textContent = '豪 无 人 性';
+    if (pop === 20) btn.textContent = '已 经 够 了';
+  });
+})();
+</script>
+</body>
+</html>
