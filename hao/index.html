@@ -11,64 +11,111 @@
     --dim:#8a8aa3;
     --neon:#7b5cff;
     --neon2:#28e0d0;
+    --gold:#f7c948;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{width:100%;overflow-x:hidden;}
   body{
     background:
       radial-gradient(ellipse at 50% -10%, rgba(123,92,255,.25), transparent 55%),
-      radial-gradient(ellipse at 90% 20%, rgba(40,224,208,.12), transparent 45%),
+      radial-gradient(ellipse at 90% 20%, rgba(40,224,208,.10), transparent 45%),
       linear-gradient(#07070b,#0b0b12 60%,#07070b);
     color:var(--ink);
     font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;
     min-height:100vh;
-    overflow-x:hidden;
   }
-  /* 扫描线 */
   body::after{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:5;
-    background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);
-    mix-blend-mode:overlay;
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9;
+    background:repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0 1px,transparent 1px 3px);
   }
   .wrap{max-width:1000px;margin:0 auto;padding:0 18px;position:relative;z-index:2;}
 
-  /* 顶部 */
-  header{padding:64px 0 26px;text-align:center;position:relative;}
-  .mask{
-    width:96px;height:96px;margin:0 auto 16px;border-radius:50%;
-    background:radial-gradient(circle at 34% 30%,#2a2a38,#0d0d12 70%);
-    border:2px solid rgba(123,92,255,.55);
-    box-shadow:0 0 34px rgba(123,92,255,.45),inset 0 0 28px rgba(0,0,0,.9);
+  /* ===== 开场：巨型豪 ===== */
+  .opening{
+    position:relative;height:100vh;min-height:620px;
     display:flex;align-items:center;justify-content:center;
-    font-size:40px;
-    animation:hover 3.6s ease-in-out infinite;
+    overflow:hidden;
   }
-  @keyframes hover{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-10px) rotate(2deg);}}
+  .halo{
+    position:absolute;width:min(96vw,760px);height:min(96vw,760px);
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(123,92,255,.30),rgba(123,92,255,.05) 55%,transparent 70%);
+    filter:blur(10px);
+    animation:breathe 6s ease-in-out infinite;
+  }
+  @keyframes breathe{0%,100%{transform:scale(1);opacity:.85;}50%{transform:scale(1.08);opacity:1;}}
+  .ring-rot{
+    position:absolute;width:min(78vw,600px);height:min(78vw,600px);
+    border-radius:50%;border:1px dashed rgba(123,92,255,.35);
+    animation:spin 40s linear infinite;
+  }
+  .ring-rot::after{
+    content:"";position:absolute;inset:26px;border-radius:50%;
+    border:1px solid rgba(40,224,208,.18);
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
 
-  h1{
-    font-size:clamp(38px,11vw,84px);letter-spacing:12px;font-weight:800;
-    position:relative;display:inline-block;
-    background:linear-gradient(120deg,#fff 10%,#b9a8ff 40%,#fff 60%,#8ef7ef 85%);
-    background-size:220% auto;
+  .giant{
+    position:relative;z-index:3;
+    font-size:min(76vw,560px);
+    line-height:.86;
+    font-weight:900;
+    letter-spacing:0;
+    background:linear-gradient(160deg,#ffffff 2%,#b9a8ff 30%,#7b5cff 52%,#28e0d0 78%,#ffffff 100%);
+    background-size:200% 200%;
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:flow 6s linear infinite;
+    filter:drop-shadow(0 0 40px rgba(123,92,255,.55)) drop-shadow(0 0 90px rgba(40,224,208,.25));
+    animation:haoFlow 9s ease-in-out infinite;
+    user-select:none;
   }
-  @keyframes flow{to{background-position:220% center;}}
-  h1::before,h1::after{
-    content:attr(data-t);position:absolute;left:0;top:0;width:100%;
-    background:inherit;-webkit-background-clip:text;background-clip:text;color:transparent;
-    opacity:.55;
+  @keyframes haoFlow{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+  /* 语录气泡 */
+  .q{
+    position:absolute;z-index:4;
+    font-size:clamp(11px,2.6vw,14px);
+    letter-spacing:2px;color:#d9d2ff;
+    padding:8px 14px;border-radius:999px;
+    background:rgba(10,10,18,.55);
+    border:1px solid rgba(123,92,255,.4);
+    backdrop-filter:blur(6px);
+    white-space:nowrap;
+    animation:floaty 7s ease-in-out infinite;
+    box-shadow:0 0 18px rgba(123,92,255,.18);
   }
-  h1::before{transform:translate(-2px,0);filter:hue-rotate(-40deg);animation:g1 4s steps(2) infinite;}
-  h1::after{transform:translate(2px,0);filter:hue-rotate(50deg);animation:g2 3s steps(2) infinite;}
-  @keyframes g1{0%,90%{opacity:0;}92%,100%{opacity:.5;}}
-  @keyframes g2{0%,88%{opacity:0;}90%,100%{opacity:.45;}}
+  .q.hot{color:#ffe9a8;border-color:rgba(247,201,72,.55);box-shadow:0 0 20px rgba(247,201,72,.2);}
+  @keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg));}50%{transform:translateY(-12px) rotate(var(--r,0deg));}}
 
-  .sub{margin-top:8px;color:var(--dim);letter-spacing:6px;font-size:13px;}
+  .q1{left:4%;top:16%;--r:-4deg;animation-delay:0s;}
+  .q2{right:3%;top:11%;--r:3deg;animation-delay:.6s;}
+  .q3{left:2%;top:34%;--r:2deg;animation-delay:1.2s;}
+  .q4{right:4%;top:31%;--r:-3deg;animation-delay:1.8s;}
+  .q5{left:6%;bottom:22%;--r:3deg;animation-delay:.9s;}
+  .q6{right:2%;bottom:19%;--r:-2deg;animation-delay:2.4s;}
+  .q7{left:50%;transform:translateX(-50%);bottom:9%;--r:0deg;animation-delay:1.5s;}
 
-  /* 豪意值 */
+  .scrollhint{
+    position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+    font-size:12px;letter-spacing:4px;color:#6f6f8c;z-index:4;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+  }
+  .scrollhint i{
+    width:18px;height:18px;border-right:2px solid #6f6f8c;border-bottom:2px solid #6f6f8c;
+    transform:rotate(45deg);animation:bounce 1.6s infinite;
+  }
+  @keyframes bounce{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.4;}50%{transform:rotate(45deg) translate(4px,4px);opacity:1;}}
+
+  /* ===== 下面原有内容 ===== */
+  header{padding:52px 0 20px;text-align:center;position:relative;}
+  h1.small{
+    font-size:clamp(26px,7vw,42px);letter-spacing:14px;font-weight:800;
+    background:linear-gradient(120deg,#fff 10%,#b9a8ff 45%,#8ef7ef 80%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{margin-top:10px;color:var(--dim);letter-spacing:6px;font-size:13px;}
+
   .meter{
-    margin:30px auto 0;max-width:620px;
+    margin:26px auto 0;max-width:620px;
     background:rgba(255,255,255,.04);border:1px solid rgba(123,92,255,.3);
     border-radius:16px;padding:16px 18px;backdrop-filter:blur(6px);
   }
@@ -83,7 +130,6 @@
   }
   .rank{margin-top:10px;text-align:center;font-size:14px;letter-spacing:4px;color:#8ef7ef;min-height:20px;}
 
-  /* 按钮区 */
   .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:26px 0 8px;}
   button{
     font-family:inherit;cursor:pointer;
@@ -95,11 +141,7 @@
   button:hover{background:rgba(123,92,255,.22);box-shadow:0 0 22px rgba(123,92,255,.35);transform:translateY(-2px);}
   button:active{transform:scale(.96);}
 
-  /* 卡片 */
-  .grid{
-    display:grid;gap:16px;margin:34px 0 10px;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  }
+  .grid{display:grid;gap:16px;margin:34px 0 10px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
   .card{
     padding:22px 18px;border-radius:16px;
     background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.015));
@@ -115,7 +157,6 @@
     border:1px solid rgba(40,224,208,.4);background:rgba(40,224,208,.08);
   }
 
-  /* 语录 */
   .quotes{margin:26px 0 10px;display:grid;gap:10px;}
   .quote{
     padding:14px 16px;border-left:3px solid rgba(123,92,255,.7);
@@ -126,36 +167,45 @@
 
   footer{padding:40px 0 60px;text-align:center;font-size:12px;color:#5f5f78;letter-spacing:2px;}
 
-  /* 特效层 */
-  .fx{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden;}
-  .drop{
-    position:absolute;top:-10vh;width:2px;height:18px;border-radius:2px;
-    background:linear-gradient(transparent,#8fd8ff);opacity:.55;
-    animation:fall linear forwards;
-  }
+  .fx{position:fixed;inset:0;pointer-events:none;z-index:20;overflow:hidden;}
+  .drop{position:absolute;top:-10vh;width:2px;height:18px;border-radius:2px;
+    background:linear-gradient(transparent,#8fd8ff);opacity:.55;animation:fall linear forwards;}
   @keyframes fall{to{transform:translateY(120vh);opacity:0;}}
-  .bit{
-    position:absolute;font-size:22px;font-weight:800;
-    animation:fly .9s ease-out forwards;pointer-events:none;
-  }
-  @keyframes fly{
-    0%{transform:translate(0,0) scale(.6);opacity:1;}
-    100%{transform:translate(var(--dx),var(--dy)) scale(1.15);opacity:0;}
-  }
-  .ring{
-    position:absolute;border-radius:50%;border:2px solid rgba(123,92,255,.8);
-    animation:ring .7s ease-out forwards;pointer-events:none;
-  }
+  .bit{position:absolute;font-size:22px;font-weight:800;animation:fly .9s ease-out forwards;pointer-events:none;}
+  @keyframes fly{0%{transform:translate(0,0) scale(.6);opacity:1;}100%{transform:translate(var(--dx),var(--dy)) scale(1.15);opacity:0;}}
+  .ring{position:absolute;border-radius:50%;border:2px solid rgba(123,92,255,.8);animation:ring .7s ease-out forwards;pointer-events:none;}
   @keyframes ring{0%{transform:scale(.2);opacity:.9;}100%{transform:scale(2.4);opacity:0;}}
+
+  @media (max-width:520px){
+    .q{font-size:10px;padding:6px 10px;}
+    .q3,.q4{display:none;}
+    .giant{font-size:86vw;}
+  }
 </style>
 </head>
 <body>
 <div class="fx" id="fx"></div>
 
+<!-- 开场：巨型豪 -->
+<section class="opening">
+  <div class="halo"></div>
+  <div class="ring-rot"></div>
+  <div class="giant">豪</div>
+
+  <div class="q q1 hot">豪情在天</div>
+  <div class="q q2">豪你不用第二遍</div>
+  <div class="q q3">豪到你了？</div>
+  <div class="q q4 hot">全对！</div>
+  <div class="q q5">4:3 才是正道</div>
+  <div class="q q6">只玩彦祖威龙</div>
+  <div class="q q7">问剑白玉京 · 大坝老鼠 · 自在极意豪</div>
+
+  <div class="scrollhint">往 下 滑 <i></i></div>
+</section>
+
 <div class="wrap">
   <header>
-    <div class="mask">🎧</div>
-    <h1 data-t="嘉豪之家">嘉豪之家</h1>
+    <h1 class="small">嘉豪之家</h1>
     <div class="sub">黑 卫 衣 · 黑 口 罩 · 虚 空 打 碟</div>
 
     <div class="meter">
@@ -180,6 +230,11 @@
       <div class="tag">基础装备</div>
     </article>
     <article class="card">
+      <h3>三角洲流派</h3>
+      <p>分辨率 4:3 1440×1080<br>系统语言改英文<br>只玩彦祖皮肤威龙<br>防爆头加牢赛甲</p>
+      <div class="tag">战术嘉豪</div>
+    </article>
+    <article class="card">
       <h3>名场面</h3>
       <p>教室里的虚空打碟<br>雨中的慢动作走路<br>对答案时那声全对</p>
       <div class="tag">经典复刻</div>
@@ -194,6 +249,8 @@
   <section class="quotes">
     <div class="quote">“全对！ABCD，CBBD，全对！Nice！”<span>—— 课堂上的嘉豪</span></div>
     <div class="quote">“豪到你了？”<span>—— 被质疑时的标准回应</span></div>
+    <div class="quote">“豪不用第二遍，因为我第一遍就是对的。”<span>—— 豪言</span></div>
+    <div class="quote">“系统语言我改成英文了，你看不出来吗？”<span>—— 三角洲嘉豪</span></div>
     <div class="quote">“你听说过嘉豪吗？”<span>—— 2026</span></div>
   </section>
 
