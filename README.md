@@ -8,35 +8,30 @@
 
 | 路径 | 说明 |
 | --- | --- |
-| `website/index.html` | 白露的小窝网页（GitHub Pages） |
-| `hao/index.html` | 嘉豪之家 · 豪气冲天（玩笑页） |
-| `apk/BaiLuPet.apk` | 白露桌宠：摸猫计数 + 桌面悬浮宠物 |
-| `astrbot-note.md` | 早期提交测试 |
+| `apk/` | 安卓桌宠安装包 |
+| `pc/` | 电脑版桌宠说明与版本记录 |
+| `web/bailu/` | 白露的小窝网页 |
+| `web/hao/` | 嘉豪之家（梗页面） |
 
-## 白露桌宠
+## 安卓版
 
-- 悬浮小宠物，可拖动
-- 点一下会冒气泡说话
-- 长按让白露回家
-- 首页集合「摸猫计数」和「桌宠模式」两个模块
-- 需要开启「显示在其他应用上层」权限
+- `apk/BaiLuPet-v1.0.apk`
+- 摸猫计数 + 桌面悬浮宠物，点她会冒气泡说话
 
-下载：[apk/BaiLuPet.apk](./apk/BaiLuPet.apk)
-
-## 网页
-
-https://hakimi-meow.github.io/BaiLu-Lab/website/
-
-## 白露桌宠 · 电脑版
-
-Windows x64 单文件，免安装。
+## 电脑版
 
 - 下载：[Releases · pc-v1.01](https://github.com/Hakimi-Meow/BaiLu-Lab/releases/tag/pc-v1.01)
 - 直链：[BaiLuPet-v1.01.exe](https://github.com/Hakimi-Meow/BaiLu-Lab/releases/download/pc-v1.01/BaiLuPet-v1.01.exe)
-- 首次运行若弹 SmartScreen，点「更多信息 → 仍要运行」
-- 存档：`%APPDATA%\BaiLuPet\state.json`
+- 详情见 [`pc/README.md`](./pc/README.md)
 
-功能：透明悬浮、拖动、点击对话气泡、右键菜单（摸摸/喂食/状态/电脑/大小/置顶/整点报时/开机自启）、托盘、养成存档、CPU/内存/网速。默认性能模式，全屏游戏时自动隐身。
+## 网页
+
+- 白露的小窝：https://hakimi-meow.github.io/BaiLu-Lab/web/bailu/
+- 嘉豪之家：https://hakimi-meow.github.io/BaiLu-Lab/web/hao/
+
+## 版本号规则
+
+`1.0 → 1.01 → 1.02 … → 1.99 → 1.99.1 … → 1.99.9 → 2.0`
 
 ## 说明
 
