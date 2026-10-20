@@ -9,6 +9,7 @@
 | 路径 | 说明 |
 | --- | --- |
 | `website/index.html` | 白露的小窝网页（GitHub Pages） |
+| `hao/index.html` | 嘉豪之家 · 豪气冲天（玩笑页） |
 | `apk/BaiLuPet.apk` | 白露桌宠：摸猫计数 + 桌面悬浮宠物 |
 | `astrbot-note.md` | 早期提交测试 |
 
