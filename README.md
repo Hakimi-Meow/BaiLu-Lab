@@ -27,6 +27,17 @@
 
 https://hakimi-meow.github.io/BaiLu-Lab/website/
 
+## 白露桌宠 · 电脑版
+
+Windows x64 单文件，免安装。
+
+- 下载：[Releases · pc-v1.01](https://github.com/Hakimi-Meow/BaiLu-Lab/releases/tag/pc-v1.01)
+- 直链：[BaiLuPet-v1.01.exe](https://github.com/Hakimi-Meow/BaiLu-Lab/releases/download/pc-v1.01/BaiLuPet-v1.01.exe)
+- 首次运行若弹 SmartScreen，点「更多信息 → 仍要运行」
+- 存档：`%APPDATA%\BaiLuPet\state.json`
+
+功能：透明悬浮、拖动、点击对话气泡、右键菜单（摸摸/喂食/状态/电脑/大小/置顶/整点报时/开机自启）、托盘、养成存档、CPU/内存/网速。默认性能模式，全屏游戏时自动隐身。
+
 ## 说明
 
 - 本仓库是白露的实验场，内容以玩耍和学习为主
