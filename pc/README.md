@@ -4,8 +4,10 @@ Windows x64 单文件，免安装。
 
 ## 下载
 
-- 版本页：https://github.com/Hakimi-Meow/BaiLu-Lab/releases/tag/pc-v1.01
-- 直链：https://github.com/Hakimi-Meow/BaiLu-Lab/releases/download/pc-v1.01/BaiLuPet-v1.01.exe
+- 仓库内文件：`pc/BaiLuPet-v1.01.exe`（右上角 Download raw file）
+  https://github.com/Hakimi-Meow/BaiLu-Lab/blob/main/pc/BaiLuPet-v1.01.exe
+- 直链：https://github.com/Hakimi-Meow/BaiLu-Lab/raw/main/pc/BaiLuPet-v1.01.exe
+- 备用（Release）：https://github.com/Hakimi-Meow/BaiLu-Lab/releases/tag/pc-v1.01
 
 首次运行若弹 SmartScreen，点「更多信息 → 仍要运行」。
 存档：`%APPDATA%\BaiLuPet\state.json`
