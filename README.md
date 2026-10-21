@@ -15,12 +15,12 @@
 
 ## 安卓版
 
-- 最新：`apk/BaiLuPet-v1.27.apk`
-  https://github.com/Hakimi-Meow/BaiLu-Lab/raw/main/apk/BaiLuPet-v1.27.apk
-- 旧版：`apk/BaiLuPet-v1.0.apk`
+- 最新：`apk/BaiLuPet-v1.30.apk`
+  https://github.com/Hakimi-Meow/BaiLu-Lab/raw/main/apk/BaiLuPet-v1.30.apk
+- 旧版：`apk/BaiLuPet-v1.27.apk`、`apk/BaiLuPet-v1.0.apk`
 - 摸猫计数 + 桌面悬浮宠物，点她会冒气泡说话
 
-### v1.27 功能
+### v1.30 功能
 
 - 桌面悬浮宠物：拖动、点击说话、长按菜单、三档大小
 - 实时更新通知：好感 / 饱食 / 摸摸次数
@@ -31,6 +31,7 @@
 - 白噪音（本地合成雨声）
 - 换装四配色、自定义台词、长按菜单可勾选
 - 全面屏适配、半透明头像水印
+- 设置页重做：首页 / 设置双页签，语言、菜单、开关、通知、统计、关于分组更清爽
 
 ## 电脑版
 
